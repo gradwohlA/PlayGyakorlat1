@@ -1,0 +1,38 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Application.index
+GET		/dummyPage1								Application.dummyPage1
+GET		/myfirstrequest							MyFirstController.controllerExercise
+GET		/mysecondrequest						MyFirstController.controllerExerciseAddition
+GET		/homework1								HomeworkController.homework1
+GET		/libraryBooks							library.LibraryController.libraryBooks
+GET		/addRandomLibrary						library.LibraryController.addRandomLibrary
+GET		/addRandomLibraryBook					library.LibraryController.addRandomLibraryBook
+GET		/deleteRandomLibrary					library.LibraryController.deleteRandomLibrary
+
+GET		/createLibrary							library.LibraryCreationController.createLibraryForm
+POST	/createLibrary							library.LibraryCreationController.createLibrary
+
+GET		/createLibraryBook						library.LibraryBookCreationController.createLibraryBookForm
+POST	/createLibraryBook						library.LibraryBookCreationController.createLibraryBook
+
+GET		/libraryDelete							library.LibraryDeleteController.deleteLibraryForm
+POST	/libraryDelete							library.LibraryDeleteController.deleteLibrary
+
+GET		/deleteLibraryBook						library.LibraryDeleteController.deleteLibraryBook
+
+GET		/moveLibraryBook						library.LibraryBookMoveController.moveLibraryBookForm
+POST	/moveLibraryBook						library.LibraryBookMoveController.moveLibraryBook
+
+GET		/libraryDetails							library.LibraryDetailsControllers.libraryDetails
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

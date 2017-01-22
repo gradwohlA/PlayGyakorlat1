@@ -1,0 +1,9 @@
+#{extends 'main.html' /}
+#{set title:'Delete Library' /}
+
+<h1>A könyvtár törlése sikeres</h1>
+<a href="libraryBooks">Vissza a könyvtárakhoz</a>
+
+#{ifErrors}
+   <h2>Ajjaj! Hiba volt</h2>
+#{/ifErrors}

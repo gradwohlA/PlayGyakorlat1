@@ -1,0 +1,27 @@
+#{extends 'main.html' /}
+#{set title:'Library Books' /}
+
+<h1>Könyvtárak</h1>
+
+#{if flash.errorMessage != null}
+	<div style="color:red">${flash.errorMessage}</div>
+#{/if}
+
+<a href="/createLibrary">Könyvtár hozzáadása</a>
+<a href="/createLibraryBook">Könyv hozzáadása</a>
+
+<table style="margin-top: 10px;">
+	<tr>
+		<th>Könyvtár neve</th>
+		<th>Link</th>
+	</tr>
+
+#{list items:libraries, as:'library'}
+	<tr>
+		<td>${library.libraryName}</td>
+		<td><a href="libraryDetails?libraryId=${library.libraryId}">Könyvtáradatok megjelenítése</a></td>
+		<td><a href="libraryDelete?libraryId=${library.libraryId}">Könyvtár törlése</a></td>
+	</tr>	
+#{/list}
+
+</table>

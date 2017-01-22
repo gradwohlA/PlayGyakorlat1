@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'Create Library' /}
+
+<h1>Könyvtár létrehozása</h1>
+
+#{ifErrors}
+   <h2>Ajjaj! Hiba volt</h2>
+#{/ifErrors}
+
+<form action="createLibrary" method="post">
+   <div>
+      Könyvtár neve: <input type="text" name="libraryName" value="${flash.libraryName}" />
+      <span style="color:red">#{error 'libraryName' /}</span>
+   </div>
+   <div>
+      Könyvtár írányítószáma: <input type="text" name="libraryPostcode" value="${flash.libraryPostcode}" /> 
+      <span style="color:red">#{error 'libraryPostcode' /}</span>
+   </div>
+   <div>
+      <input type="submit" value="Könyvtár létrehozása" /> 
+   </div>
+</form>

@@ -1,0 +1,48 @@
+#{extends 'main.html' /}
+#{set title:'Create Book' /}
+
+<h1>Könyv hozzáadása</h1>
+
+#{ifErrors}
+   <h2>Ajjaj! Hiba volt</h2>
+#{/ifErrors}
+
+<form action="createLibraryBook" method="post">
+   <div>
+      Könyvtár:
+      <select name="libraryId">
+      	#{list items:libraries, as:'library'}
+      		<!-- MEGJEGYZÉS: a flasht nem tudom közvetlenül összehasonlítani a library.libraryId-vel -->
+      		<!-- MEGJEGYZÉS: ugyanis a flashben csak Stringek vannak, így a flashbeli libraryId is String -->
+      		<!-- MEGJEGYZÉS: megoldás: toString() hívás, hogy hasonlíthatóak legyenek -->
+      		<option value="${library.libraryId}" #{if flash.libraryId == library.libraryId.toString()} selected="selected" #{/if}>
+      			${library.libraryName}
+      		</option>
+      	#{/list}
+      </select>
+      <span style="color:red">#{error 'libraryId' /}</span>
+   </div>
+   <div>
+      EAN: <input type="text" name="ean" value="${flash.ean}" /> <!-- flash miatt nem kell újra beírni amit írtunk már hiba esetén -->
+      <span style="color:red">#{error 'ean' /}</span>
+   </div>
+   <div>
+      Cím: <input type="text" name="title" value="${flash.title}" /> 
+      <span style="color:red">#{error 'title' /}</span>
+   </div>
+   <div>
+      Szerző: <input type="text" name="author" value="${flash.author}" /> 
+      <span style="color:red">#{error 'author' /}</span>
+   </div>
+   <div>
+      Oldalszám: <input type="text" name="pageNumber" value="${flash.pageNumber}" /> 
+      <span style="color:red">#{error 'pageNumber' /}</span>
+   </div>
+   <div>
+      Raktáron: <input type="checkbox" name="isRaktaron" #{if flash.isRaktaron != null} checked="checked" #{/if} /> 
+      <span style="color:red">#{error 'isRaktaron' /}</span>
+   </div>
+   <div>
+      <input type="submit" value="Könyv hozzáadása" /> 
+   </div>
+</form>

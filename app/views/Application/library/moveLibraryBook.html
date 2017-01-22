@@ -1,0 +1,30 @@
+#{extends 'main.html' /}
+#{set title:'Create Book' /}
+
+<h1>Könyv mozgatása</h1>
+
+#{ifErrors}
+   <h2>Ajjaj! Hiba volt</h2>
+#{/ifErrors}
+
+<form action="moveLibraryBook" method="post">
+   <input type="hidden" name="libraryBookId" value="${book.libraryBookId}" />
+   <div>Jelenlegi könyvtár: ${book.owningLibrary.libraryName}</div>
+   <div>
+      Új Könyvtár:
+      <select name="libraryId">
+      	#{list items:libraries, as:'library'}
+      		<!-- MEGJEGYZÉS: a flasht nem tudom közvetlenül összehasonlítani a library.libraryId-vel -->
+      		<!-- MEGJEGYZÉS: ugyanis a flashben csak Stringek vannak, így a flashbeli libraryId is String -->
+      		<!-- MEGJEGYZÉS: megoldás: toString() hívás, hogy hasonlíthatóak legyenek -->
+      		<option value="${library.libraryId}" #{if flash.libraryId == library.libraryId.toString()} selected="selected" #{/if}>
+      			${library.libraryName}
+      		</option>
+      	#{/list}
+      </select>
+      <span style="color:red">#{error 'libraryId' /}</span>
+   </div>
+   <div>
+      <input type="submit" value="Könyv mozgatása" /> 
+   </div>
+</form>
